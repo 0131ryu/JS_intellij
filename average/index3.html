@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>평균값 계산기-while</title>
+</head>
+<body>
+    <script>
+    /*
+    1. 총합을 저장할 변수를 선언하고 값을 '0'으로 설정
+    2. 총 10번동안 다음의 코드 반복
+        2-1 사용자로부터 숫자를 입력받음
+        2-2 입력받은 숫자를 1번 과정에서 선언한 변수에 더함
+    3. 평균값을 저장할 변수를 선ㅇ너하고 값을 '총합/10'으로 설정
+    4. 평균값을 출력
+    */
+
+
+   //전체 숫자의 개수 -> 필요에 따라 사용자가 입력하는 값에 따라 동적으로 개수를 바꿔감
+   var totalNumbers= Number(prompt("숫자의 개수를 입력하세요"));
+
+   //총합을 저장할 변수 선언
+   var sum = 0;
+
+   //반복을 위한 변수
+   var i = 1;
+
+   //i가 1부터 10까지 될때까지 순차적으로 1씩 증가
+   while(i <= totalNumbers){
+    //몇 번째 숫자인지 확인할 것
+    var value = prompt(i + "번 숫자를 입력하세요");
+
+    //입력받은 문자열을 숫자로 변환하여 총합 변수에 더함
+    sum += Number(value);
+
+    //i의 값을 1만큼 증가, 이게 없을 경우 무한루프에 빠짐(while 빠져나오지 못함)
+    i++;
+   }
+
+   //평균값을 계산한다
+   var avg = sum / totalNumbers;
+
+   alert("평균값: " + avg);
+    </script>
+</body>
+</html>
