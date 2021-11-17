@@ -20,8 +20,14 @@
 
 //리팩토링 -> 안내문구 함수로 만들기
 function showText (s) {
-    var textElem = document.getElementById('text');
-    textElem.innerHTML = s;
+    //var textElem = document.getElementById('text');
+    //textElem.innerHTML = s;
+    //jquery 사용
+    var $textElem = $('#text');
+    $textElem.fadeOut(400, function() {
+        $textElem.html(s);
+        $textElem.fadeIn(100);
+    });
 }
 
 var computer = {
@@ -161,7 +167,8 @@ function onUserShoot(shootType) { //()안에 shootType 넣어야 함 -> 인자�
 //    var textElem = document.getElementById('text');
 //    var userScoreElem = document.getElementById('user-score');
 
-    var shootType = Math.random() < 0.5 ? 2 : 3; //이전엔 있을 경우 오류 발생
+    //해당 부분이 있을 경우 유저의 2, 3점을 구분하지 못함
+    //var shootType = Math.random() < 0.5 ? 2 : 3;
 //
 //    if(shootType === 2) {
         if(Math.random() < user['percent' + shootType]) {
