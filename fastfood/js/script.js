@@ -2,7 +2,28 @@ var API_URL = "https://floating-harbor-78336.herokuapp.com/fastfood";
 
 $(function() {
     $('.btn-search').click(function() {
-        $.get(API_URL, {}, function(data) {
+
+        //사용자가 입력한 키워드로 검색하기
+        var searchKeyword = $('#txt-search').val();
+
+        search(searchKeyword);
+        });
+
+           //검색 시 엔터키가 입력되었는지 여부
+            $('#txt-search').on('keypress', function(e) {
+                if(e.keyCode === 13) {
+                //console.log('엔터키가 입력되었습니다.');
+                $('.btn-search').trigger('click'); //trigger :특정 엘리먼트를 강제로 이벤트 발생
+                }
+            });
+        });
+
+        function search(searchKeyword) {
+        $.get(API_URL, {
+
+            //사용자가 입력한 키워드로 검색하기
+            searchKeyword: searchKeyword
+            }, function(data) {
             //개수 출력하기
             var list = data.list;
             var total = data.total;
@@ -31,5 +52,4 @@ $(function() {
             }
 
         });
-    });
-});
+    };
