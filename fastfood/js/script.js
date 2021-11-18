@@ -6,7 +6,7 @@ $(function() {
         //사용자가 입력한 키워드로 검색하기
         var searchKeyword = $('#txt-search').val();
 
-        search(searchKeyword);
+        search(1, 10, searchKeyword);
         });
 
            //검색 시 엔터키가 입력되었는지 여부
@@ -18,11 +18,31 @@ $(function() {
             });
         });
 
-        function search(searchKeyword) {
-        $.get(API_URL, {
+    //페이징 오류 수정
+    var numPages = 5; //한 화면에 5번까지만 표시
+    var pageStart = Math.floor((page - 1 ) / numPages) * numPages + 1;
+    var pageEnd = pageStart + numPages - 1;
+    var totalPages = Math.floor((total - 1) / perPage) + 1;
 
+    if(pageEnd > totalPages)
+        pageEnd = total;
+
+        //search 함수 내 paging 추가
+        function search(page, perPage, searchKeyword) {
+
+        if(typeof page !== 'number' || page < 1)
+            page = 1;
+
+        if(typeof perPage !== 'number' || perPage < 0)
+                    perPage = 10;
+
+        $.get(API_URL, {
+            //페이징 추가
+            page: page,
+            perPage: perPage,
             //사용자가 입력한 키워드로 검색하기
             searchKeyword: searchKeyword
+
             }, function(data) {
             //개수 출력하기
             var list = data.list;
@@ -50,6 +70,22 @@ $(function() {
 
                 $list.append($elem);
             }
-
+            //페이징 함수
+            showPaging(page, perPage, total);
         });
     };
+
+//페이징 함수
+    function showPaging(page, perPage, total) {
+        var $paging = $('.paging');
+
+        for(var i =pageStart; i<=pageEnd; i++) {
+            var $elem = $('<a href="javascript:search('+ i + ')">' + i + '</a>');
+
+            if(i === page) {
+                $elem.addClass('current');
+            }
+
+            $paging.append($elem);
+        }
+    }
