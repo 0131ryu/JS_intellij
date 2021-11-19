@@ -18,14 +18,7 @@ $(function() {
             });
         });
 
-    //페이징 오류 수정
-    var numPages = 5; //한 화면에 5번까지만 표시
-    var pageStart = Math.floor((page - 1 ) / numPages) * numPages + 1;
-    var pageEnd = pageStart + numPages - 1;
-    var totalPages = Math.floor((total - 1) / perPage) + 1;
 
-    if(pageEnd > totalPages)
-        pageEnd = total;
 
         //search 함수 내 paging 추가
         function search(page, perPage, searchKeyword) {
@@ -76,16 +69,41 @@ $(function() {
     };
 
 //페이징 함수
-    function showPaging(page, perPage, total) {
-        var $paging = $('.paging');
+        function showPaging(page, perPage, total, searchKeyword) {
+          var $paging = $('.paging').empty();
+          var numPages = 5;
+          var pageStart = Math.floor((page - 1) / numPages) * numPages + 1;
+          var pageEnd = pageStart + numPages - 1;
+          var totalPages = Math.floor(total / perPage) + 1;
 
-        for(var i =pageStart; i<=pageEnd; i++) {
-            var $elem = $('<a href="javascript:search('+ i + ')">' + i + '</a>');
+          if (pageEnd > totalPages)
+            pageEnd = totalPages;
 
-            if(i === page) {
-                $elem.addClass('current');
+          var prevPage = pageStart - 1;
+
+          if (prevPage < 1)
+            prevPage = 1;
+
+          var nextPage = pageEnd + 1;
+
+          if (nextPage > totalPages)
+            nextPage = totalPages;
+
+          var $prevElem = $('<a href="javascript:search(' + prevPage + ',' + perPage + ',\'' + searchKeyword + '\')">이전</a>');
+          $prevElem.addClass('prev');
+          $paging.append($prevElem);
+
+          for (var i = pageStart; i <= pageEnd; i++) {
+            var $elem = $('<a href="javascript:search(' + i + ',' + perPage + ',\'' + searchKeyword + '\')">' + i + '</a>');
+
+            if (i === page) {
+              $elem.addClass('current');
             }
 
             $paging.append($elem);
+          }
+
+          var $nextElem = $('<a href="javascript:search(' + nextPage + ',' + perPage + ',\'' + searchKeyword + '\')">다음</a>');
+          $nextElem.addClass('next');
+          $paging.append($nextElem);
         }
-    }
