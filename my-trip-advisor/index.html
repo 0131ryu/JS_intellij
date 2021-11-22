@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" />
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">--> <!--Datapicker css-->
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!--<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.js" />-->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script><!--Datapicker js-->
     <script src="js/script.js"></script>
     <title>마이트립어드바이저</title>
 </head>
@@ -20,6 +24,30 @@
         </div>
     </div>
     <div id="body">
+        <div id="title-text" class="lg-text">어디로 떠나볼까요?</div>
+        <div id="title-sub-text" class="md-text">Where do you want to go?</div>
+        <div id="search-panel">
+            <form id="form-search">
+                <div class="panel-block">
+                    <label for="from">일정인 언제인가요?</label>
+                    <div>
+                        <input type="text" id="from" readonly/>
+                    </div>
+                </div>
+                <div class="panel-block">
+                    <label for="to">언제까지인가요?</label>
+                    <div>
+                        <input type="text" id="to" readonly/>
+                    </div>
+                </div>
+                <div class="panel-block no-margin">
+                    <button type="submit" class="btn-search">
+                        <img src="images/icon_search_on.png" />
+                        검색
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>
