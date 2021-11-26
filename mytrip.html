@@ -2,19 +2,18 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>마이트립 어드바이저 - 상세보기</title>
+    <title>마이트립 어드바이저 - 마이트립</title>
 
     <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="libs/js.cookie.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="libs/galleria/galleria.js"></script>
+    <script src="libs/js.cookie.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?https://console.cloud.google.com/apis/dashboard?project=dotted-tide-317507"></script>
-    <script src="js/detail.js"></script>
+    <script src="js/mytrip.js"></script>
 </head>
 <body>
 <div id="container">
@@ -29,24 +28,20 @@
         </div>
     </div>
     <div id="body" class="detail">
-        <div class="detail-container">
-            <div class="detail-header">
-                <img src="images/icon_list_location.png" />
-                <div class="detail-header-name"></div> | <span class="detail-header-city-name"></span>
-                <button class="btn-register">여행지 등록하기</button>
-            </div>
-            <div id="detail-images"></div>
-            <div class="detail-desc">
-                <div class="detail-title">장소 소개</div>
-                <div class="detail-desc-text"></div>
-            </div>
-            <div class="detail-map">
-                <div class="detail-title">지도</div>
-                <div id="map"></div>
-            </div>
+        <div class="mytrip-container">
+            <div id="map"></div>
+            <ul id="mytrip-list"></ul>
         </div>
     </div>
 </div>
+
+<li class="mytrip-item" id="mytrip-item-template">
+    <span class="item-icon"></span>
+    <span class="item-name"></span>
+    <span class="item-line"></span>
+    <span class="item-city-name"></span>
+    <span class="item-remove"></span>
+</li>
 
 </body>
 </html>
